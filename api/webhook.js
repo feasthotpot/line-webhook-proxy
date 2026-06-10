@@ -3,16 +3,9 @@ export default async function handler(req, res) {
     try {
       const GAS_URL = process.env.GAS_URL;
       const body = JSON.stringify(req.body);
+      const url = GAS_URL + '?body=' + encodeURIComponent(body);
       
-      await fetch(GAS_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-line-signature': req.headers['x-line-signature'] || ''
-        },
-        body: body,
-        redirect: 'follow'
-      });
+      await fetch(url, { method: 'GET' });
       
       res.status(200).json({ status: 'ok' });
     } catch (err) {
