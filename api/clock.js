@@ -338,14 +338,23 @@ async function doClock(type) {
 }
 
 function showResult(type, data) {
-  const icons = { '上班打卡': '✅', '下班打卡': '🔚', '休息開始': '☕', '休息結束': '💪' };
-  document.getElementById('result-icon').textContent = icons[type] || '✅';
-  document.getElementById('result-title').textContent = type + (data.success === false ? ' 失敗' : ' 成功');
-  document.getElementById('result-msg').textContent = data.msg || ('打卡時間：' + new Date().toLocaleTimeString('zh-TW'));
+  const icons = { 
+    '上班打卡': '✅', 
+    '下班打卡': '🔚', 
+    '休息開始': '☕', 
+    '休息結束': '💪' 
+  };
+  
+  const isSuccess = data.success !== false;
+  
+  document.getElementById('result-icon').textContent = isSuccess ? (icons[type] || '✅') : '⚠️';
+  document.getElementById('result-title').textContent = isSuccess ? type + ' 成功' : '打卡失敗';
+  document.getElementById('result-msg').textContent = data.msg || (new Date().toLocaleTimeString('zh-TW'));
   document.getElementById('main-content').style.display = 'none';
   document.getElementById('result-screen').style.display = 'flex';
   
-  if (data.success !== false) {
+  // 成功才自動關閉，失敗讓用戶看到錯誤
+  if (isSuccess) {
     setTimeout(() => {
       if (liff.isInClient()) liff.closeWindow();
       else showMain();
