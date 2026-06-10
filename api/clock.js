@@ -5,9 +5,6 @@ module.exports = function handler(req, res) {
   const GAS_URL = process.env.GAS_URL;
   const LIFF_ID = process.env.LIFF_ID;
   // ... 其餘不變
-export default function handler(req, res) {
-  const GAS_URL = process.env.GAS_URL;
-  const LIFF_ID = process.env.LIFF_ID;
   
   const html = `<!DOCTYPE html>
 <html lang="zh-TW">
