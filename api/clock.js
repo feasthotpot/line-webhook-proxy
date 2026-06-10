@@ -1,4 +1,11 @@
 export default function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  
+  const GAS_URL = process.env.GAS_URL;
+  const LIFF_ID = process.env.LIFF_ID;
+  // ... 其餘不變
+export default function handler(req, res) {
   const GAS_URL = process.env.GAS_URL;
   const LIFF_ID = process.env.LIFF_ID;
   
