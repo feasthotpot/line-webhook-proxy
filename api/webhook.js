@@ -5,13 +5,20 @@ export default async function handler(req, res) {
       const body = JSON.stringify(req.body);
       const url = GAS_URL + '?body=' + encodeURIComponent(body);
       
-      await fetch(url, { method: 'GET' });
+      const response = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0'
+        }
+      });
       
-      res.status(200).json({ status: 'ok' });
+      console.log('GAS response status:', response.status);
+      console.log('GAS response url:', response.url);
+      
     } catch (err) {
-      res.status(200).json({ status: 'ok' });
+      console.log('fetch error:', err.message);
     }
-  } else {
-    res.status(200).json({ status: 'ok' });
   }
+  res.status(200).json({ status: 'ok' });
 }
