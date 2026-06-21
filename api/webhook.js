@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const GAS_URL = process.env.GAS_URL;
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwKPq_qpuIngaqr1rLfyLrF_feUleUayvtQnSCBIQ7SiNHuDtLL2kIuaU4fYaVJF-E/exec';
       const body = JSON.stringify(req.body);
       const encoded = Buffer.from(body).toString('base64');
       const url = GAS_URL + '?b64=' + encodeURIComponent(encoded);
