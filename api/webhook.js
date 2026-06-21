@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const GAS_URL = 'https://script.google.com/macros/s/AKfycbwKPq_qpuIngaqr1rLfyLrF_feUleUayvtQnSCBIQ7SiNHuDtLL2kIuaU4fYaVJF-E/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbzAFunV1whip3HSFLmSmRn8TAFFjxYJJ3Fl73ZjH1kamzjWnCSioK4eWeWF5CXmyBsH/exec';
       const body = JSON.stringify(req.body);
 
       // 手動跟隨所有導向
